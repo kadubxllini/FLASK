@@ -7,18 +7,39 @@
 <body>
     <h1>LAB FLASK</h1>
     <form method="POST">
-        <label for="nome">Digite seu nome:</label>
-        <input type="text" id="nome" name="nome">
+        <div for="nome">Digite seu nome:
+            <input type="text" id="nome" name="nome">
+        </div>
+        
+        <div for="idade">Qual a sua idade:
+            <input type="number" id="idade" name="idade">
+        </div>
+        
+        <br>
         <button type="submit">Enviar</button>
+
+        
     </form>
 
     <hr>
 
-    {% if nome_no_html %}
-        <h2>Oi {{ nome_no_html }}, seu nome foi enviado com sucesso</h2>
+    {% if nome_no_html and idade_no_html %}
+        <h2>Oi, seu nome é {{ nome_no_html }} e você tem {{idade_no_html}} anos</h2>
+    {% elif nome_no_html %}
+        <p>Digite sua idade também</p>
+    {% elif idade_no_html %}
+        <p>Digite seu nome também</p>
     {% else %}
-        <p>Insira um nome...</p>
+        <p>Insira seu nome e idade...</p>
     {% endif %}
+
+    
+    <ul>
+    {% for user in usuarios %}
+        <li>ID: {{ user.id }} - Nome: {{ user.nome }} - Idade: {{user.idade}}</li>
+    {% endfor %}
+    </ul>
+    
 
 </body>
 </html>
